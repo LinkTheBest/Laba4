@@ -6,12 +6,12 @@ public class LilGuys extends SomethingAlive {
     private LilGuyType type;
 
     public LilGuys() {
-        System.out.println("просто малыш создан");
+        System.out.println("Просто человек создан");
     }
 
     public LilGuys(String name) {
         super(name);
-        System.out.println("Малыш " + name + " успешно создан");
+        System.out.println("Человек " + name + " успешно создан");
     }
 
     public ArrayList<Skills> getSkills() {
@@ -41,13 +41,26 @@ public class LilGuys extends SomethingAlive {
         this.type = type;
         String typeName = "";
         switch (type){
-            case CLEVERLILGUY: typeName = "Главный и умный";
+            case RICH_GUY: typeName = "богач";
                 break;
-            case JUSTLILGUY: typeName = "просто чел";
+            case RABOTYAGA: typeName = "работяга";
                 break;
         }
         System.out.println(getName() + " причислен к виду " + typeName);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

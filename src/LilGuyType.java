@@ -1,4 +1,4 @@
 public enum LilGuyType {
-    CLEVERLILGUY,
-    JUSTLILGUY;
+    RICH_GUY,
+    RABOTYAGA;
 }
