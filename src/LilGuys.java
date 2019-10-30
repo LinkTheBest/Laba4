@@ -56,7 +56,7 @@ public class LilGuys extends SomethingAlive {
 
     @Override
     public String toString() {
-        return super.toString();
+        return super.getName();
     }
 
     @Override

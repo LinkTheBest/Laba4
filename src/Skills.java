@@ -30,4 +30,19 @@ public class Skills {
     public int getMana() {
         return mana;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
