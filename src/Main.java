@@ -29,7 +29,7 @@ public class Main {
         rabotyaga_skills.add(new Skills("Бросать работу", null));
 
 
-        for (int i = 0; i < 50; i++){
+        for (int i = 0; i < 15; i++){
             System.out.print(i + " ");
             LilGuys rabotyaga = new LilGuys("Работяга");
             rabotyaga.setType(LilGuyType.RABOTYAGA);
@@ -41,8 +41,8 @@ public class Main {
         Place fantastic_city = new Place(" город");
         fantastic_city.addThing(new Thing("Фабрика"));
         fantastic_city.addThing(new Thing("Издательство 'продажная газетка'"));
-
-        System.out.println(mr_scuperfield.equals(miga));
+        fantastic_city.addThing(new Thing("Издательство 'Любая статья за ваши деньги'"));
+        fantastic_city.addThing(new Thing("Издательство 'Вы заплатите, мы напишем!'"));
 
     }
 }
