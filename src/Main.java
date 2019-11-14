@@ -1,4 +1,3 @@
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -8,7 +7,7 @@ public class Main {
 
     private static Scanner scn = new Scanner(System.in);
     private static Random rnd = new Random();
-    private static double salary;
+    private static float salary;
     private static int decision;
     public static void main(String[] args) {
 
@@ -76,8 +75,10 @@ public class Main {
 
         System.out.println("Для выхода из программы введите: -1");
         System.out.println("Задайте зарплату работягам в фертингах: ");
-        salary = scn.nextDouble();
 
+        try {
+            salary = scn.nextFloat();
+        }catch (Exception e){}
 
         while (salary != -1) {
             if (salary >= 1) {
@@ -97,10 +98,15 @@ public class Main {
                     System.out.println("Мистер Скуперфильд решил: " + mr_scuperfield_skills.get(3));
                     System.out.println("Тогда работяги решили: " + rabotyaga_skills.get(2));
                     System.out.println("Мистер Скуперфильд: " + mr_scuperfield_skills.get(1));
+                    salary = 0;
                     break;
-                } else {
+                }
+
+                if(decision != 0){
                     System.out.println("Мистер Скуперфильд решил: " + mr_scuperfield_skills.get(4));
-                    salary = scn.nextDouble();
+                   salary =(float)Math.random() * 10;
+                    System.out.print("Теперь зарплата: ");
+                    System.out.println(String.format("%.1f",salary));
 
                 }
             }
