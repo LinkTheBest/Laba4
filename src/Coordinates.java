@@ -1,8 +1,8 @@
 public class Coordinates {
 
     private String name;
-    private Double x;
-    private Double y;
+    private double x;
+    private double y;
 
     public Coordinates(double x, double y){
         this.x = x;
@@ -32,8 +32,8 @@ public class Coordinates {
         return coordinates;
     }
 
-    @Override
-    public boolean equals(Object obj) {
+
+    public boolean equals(Coordinates obj) {
         return super.equals(obj);
     }
 
@@ -44,6 +44,6 @@ public class Coordinates {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return getCoordinates().hashCode();
     }
 }

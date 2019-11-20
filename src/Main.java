@@ -15,10 +15,6 @@ public class Main {
         ArrayList<Skills> mr_spruts_skill = new ArrayList<>();
         ArrayList<Skills> rabotyaga_skills = new ArrayList<>();
 
-
-        System.out.println("  ●▬▬▬▬▬▬▬▬▬▬▬▬ஜ۩۞۩ஜ▬▬▬▬▬▬▬▬▬▬▬▬●\n" +
-                "░░░░░░░░░░░░░░ WELCOME ░░░░░░░░░░░░░\n" +
-                "  ●▬▬▬▬▬▬▬▬▬▬▬▬ஜ۩۞۩ஜ▬▬▬▬▬▬▬▬▬▬▬▬●");
         System.out.println("╔═══╗╔═══╗╔═╗╔═╗╔═══╗     ╔═══╗╔════╗╔═══╗╔═══╗╔════╗╔═══╗╔═══╗\n" +
                 "║╔═╗║║╔═╗║║║╚╝║║║╔══╝     ║╔═╗║║╔╗╔╗║║╔═╗║║╔═╗║║╔╗╔╗║║╔══╝╚╗╔╗║\n" +
                 "║║─╚╝║║─║║║╔╗╔╗║║╚══╗     ║╚══╗╚╝║║╚╝║║─║║║╚═╝║╚╝║║╚╝║╚══╗─║║║║\n" +
@@ -52,33 +48,42 @@ public class Main {
         rabotyaga_skills.add(new Skills("Бросать работу", null));
         rabotyaga_skills.add(new Skills("Требовать повышения зарплаты", null));
 
+        System.out.println("Задайте зарплату для работяг в формате 'X,X': ");
+        try {
+            salary = scn.nextFloat();
+        }catch (Exception e){
+            System.out.println("Неверный формат числа, зарплата будет сгенерирована автоматически");
+            salary = (float)Math.random();
+        }
 
-        for (int i = 0; i < 15; i++) {
-            System.out.print(i + " ");
+        for (int i = 0; i < 10; i++) {
+            System.out.println();
+            System.out.print(i+1 + " ");
             LilGuys rabotyaga = new LilGuys("Работяга");
             rabotyaga.setType(LilGuyType.RABOTYAGA);
             rabotyaga.setSkills(rabotyaga_skills);
+            rabotyaga.setSalary(salary);
+            try{
+                Thread.sleep(500);
+            }catch (InterruptedException thr){}
         }
 
+        System.out.println("############################################################################################");
+        System.out.println();
 
         Place fantastic_city = new Place(" город");
         fantastic_city.addThing(new Thing("Фабрика"));
         fantastic_city.addThing(new Thing("Издательство 'продажная газетка'"));
         fantastic_city.addThing(new Thing("Издательство 'Любая статья за ваши деньги'"));
         fantastic_city.addThing(new Thing("Издательство 'Вы заплатите, мы напишем!'"));
+        System.out.println();
 
-        System.out.println("#######################################################################################");
+        System.out.println("############################################################################################");
+        System.out.println();
         System.out.println("Мига и ЖУЛИО сбежали");
         System.out.println("Мистер Спрутс проявил скилл: "+ mr_spruts_skill.get(1));
         System.out.println("Мистер Спрутс проявил скилл: "+ mr_spruts_skill.get(0));
         System.out.println("Мистер Скуперфильд проявил скилл: "+ mr_scuperfield_skills.get(5));
-
-        System.out.println("Для выхода из программы введите: -1");
-        System.out.println("Задайте зарплату работягам в фертингах: ");
-
-        try {
-            salary = scn.nextFloat();
-        }catch (Exception e){}
 
         while (salary != -1) {
             if (salary >= 1) {
@@ -86,7 +91,6 @@ public class Main {
                 System.out.println(rabotyaga_skills.get(0));
                 break;
             } else {
-                System.out.println(" Мистер Скуперфильд проявил скилл: " + mr_scuperfield_skills.get(2));
                 System.out.print("Работяги будут ");
                 System.out.println(rabotyaga_skills.get(1));
                 System.out.print("Работяги будут ");
@@ -104,7 +108,7 @@ public class Main {
 
                 if(decision != 0){
                     System.out.println("Мистер Скуперфильд решил: " + mr_scuperfield_skills.get(4));
-                   salary =(float)Math.random() * 10;
+                    salary =(float)Math.random() * 10;
                     System.out.print("Теперь зарплата: ");
                     System.out.println(String.format("%.1f",salary));
 

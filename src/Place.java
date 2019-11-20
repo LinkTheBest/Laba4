@@ -63,8 +63,8 @@ public class Place {
         return skills.add(skill);
     }
 
-    @Override
-    public boolean equals(Object obj) {
+
+    public boolean equals(Place obj) {
         return super.equals(obj);
     }
 
@@ -75,7 +75,7 @@ public class Place {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return getClass().hashCode();
     }
 
 

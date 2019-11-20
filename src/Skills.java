@@ -31,8 +31,8 @@ public class Skills {
         return mana;
     }
 
-    @Override
-    public boolean equals(Object obj) {
+
+    public boolean equals(Skills obj) {
         return super.equals(obj);
     }
 
@@ -43,6 +43,6 @@ public class Skills {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return getClass().hashCode();
     }
 }

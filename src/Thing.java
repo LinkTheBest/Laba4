@@ -37,8 +37,8 @@ public class Thing implements InterfaceThings {
         return visible;
     }
 
-    @Override
-    public boolean equals(Object obj) {
+
+    public boolean equals(Thing obj) {
         return super.equals(obj);
     }
 
@@ -49,7 +49,7 @@ public class Thing implements InterfaceThings {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return getClass().hashCode();
     }
 
 }

@@ -4,6 +4,7 @@ public class LilGuys extends SomethingAlive {
 
     private ArrayList<Skills> skills = new ArrayList<>();
     private LilGuyType type;
+    private float salary;
 
     public LilGuys() {
         System.out.println("Просто человек создан");
@@ -49,8 +50,14 @@ public class LilGuys extends SomethingAlive {
         System.out.println(getName() + " причислен к виду " + typeName);
     }
 
-    @Override
-    public boolean equals(Object obj) {
+    public void setSalary(float salary){
+        this.salary = salary;
+        System.out.print("Задана зарплата: ");
+        System.out.printf("%.1f", salary);
+        System.out.println();
+    }
+
+    public boolean equals(LilGuys obj) {
         return super.equals(obj);
     }
 
@@ -61,6 +68,6 @@ public class LilGuys extends SomethingAlive {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return getClass().hashCode();
     }
 }
