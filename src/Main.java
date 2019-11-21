@@ -9,7 +9,7 @@ public class Main {
     private static Random rnd = new Random();
     private static float salary;
     private static int decision;
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SalaryNullException, ThingDoesNotException {
 
         ArrayList<Skills> mr_scuperfield_skills = new ArrayList<>();
         ArrayList<Skills> mr_spruts_skill = new ArrayList<>();
@@ -49,14 +49,20 @@ public class Main {
         rabotyaga_skills.add(new Skills("Требовать повышения зарплаты", null));
 
         System.out.println("Задайте зарплату для работяг в формате 'X,X': ");
+        System.out.println("Для выхода введите -1");
+
         try {
             salary = scn.nextFloat();
         }catch (Exception e){
             System.out.println("Неверный формат числа, зарплата будет сгенерирована автоматически");
             salary = (float)Math.random();
+            if(salary == 0){
+                throw new SalaryNullException();
+            }
         }
 
-        for (int i = 0; i < 10; i++) {
+
+        for(int i = 0 ; i < 10; i++) {
             System.out.println();
             System.out.print(i+1 + " ");
             LilGuys rabotyaga = new LilGuys("Работяга");

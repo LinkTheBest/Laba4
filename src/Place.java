@@ -39,7 +39,10 @@ public class Place {
         return location;
     }
 
-    public boolean addThing(Thing new_thing) {
+    public boolean addThing(Thing new_thing) throws ThingDoesNotException {
+        if(new_thing ==  null){
+            throw new ThingDoesNotException();
+        }
         if (things.add(new_thing)) {
 
             System.out.println("В объект \"" + name + "\" успешно добавлено " + new_thing.getName() + " в количестве " + new_thing.getCounter() );
