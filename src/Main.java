@@ -9,11 +9,13 @@ public class Main {
     private static Random rnd = new Random();
     private static float salary;
     private static int decision;
-    public static void main(String[] args) throws SalaryNullException, ThingDoesNotException {
+
+    public static void main(String[] args) throws SalaryNullException, ThingDoesNotExistException {
 
         ArrayList<Skills> mr_scuperfield_skills = new ArrayList<>();
         ArrayList<Skills> mr_spruts_skill = new ArrayList<>();
         ArrayList<Skills> rabotyaga_skills = new ArrayList<>();
+        ArrayList<Skills> bezrabotnye_skills = new ArrayList<>();
 
         System.out.println("╔═══╗╔═══╗╔═╗╔═╗╔═══╗     ╔═══╗╔════╗╔═══╗╔═══╗╔════╗╔═══╗╔═══╗\n" +
                 "║╔═╗║║╔═╗║║║╚╝║║║╔══╝     ║╔═╗║║╔╗╔╗║║╔═╗║║╔═╗║║╔╗╔╗║║╔══╝╚╗╔╗║\n" +
@@ -41,12 +43,15 @@ public class Main {
         mr_scuperfield_skills.add(new Skills("Не повышать зарплату работягам", null));
         mr_scuperfield_skills.add(new Skills("Повышать зарплату работягам", null));
         mr_scuperfield_skills.add(new Skills("Сбросить акции", null));
+        mr_scuperfield_skills.add(new Skills("Нанять безработных", null));
         mr_scuperfield.setSkills(mr_scuperfield_skills);
 
         rabotyaga_skills.add(new Skills("Терпеть и работать", null));
         rabotyaga_skills.add(new Skills("Возмущаться", null));
         rabotyaga_skills.add(new Skills("Бросать работу", null));
         rabotyaga_skills.add(new Skills("Требовать повышения зарплаты", null));
+
+        bezrabotnye_skills.add(new Skills("Не хотеть наниматься", null));
 
         System.out.println("Задайте зарплату для работяг в формате 'X,X': ");
         System.out.println("Для выхода введите -1");
@@ -55,20 +60,28 @@ public class Main {
             salary = scn.nextFloat();
         }catch (Exception e){
             System.out.println("Неверный формат числа, зарплата будет сгенерирована автоматически");
-            salary = (float)Math.random();
-            if(salary == 0){
-                throw new SalaryNullException();
+            try {
+                salary = (float) Math.random();
+            }catch (SalaryNullException ex){
+                ex.getMessage();
             }
+
         }
 
 
-        for(int i = 0 ; i < 10; i++) {
+        for(int i = 0 ; i < 3; i++) {
             System.out.println();
             System.out.print(i+1 + " ");
             LilGuys rabotyaga = new LilGuys("Работяга");
             rabotyaga.setType(LilGuyType.RABOTYAGA);
             rabotyaga.setSkills(rabotyaga_skills);
-            rabotyaga.setSalary(salary);
+            try {
+                rabotyaga.setSalary(salary);
+            }catch (SalaryNullException ex){
+                System.out.println(ex.getMessage());
+                System.out.println(ex.getSalary());
+                break;
+            }
             try{
                 Thread.sleep(500);
             }catch (InterruptedException thr){}
@@ -77,16 +90,45 @@ public class Main {
         System.out.println("############################################################################################");
         System.out.println();
 
-        Place fantastic_city = new Place(" город");
-        fantastic_city.addThing(new Thing("Фабрика"));
-        fantastic_city.addThing(new Thing("Издательство 'продажная газетка'"));
-        fantastic_city.addThing(new Thing("Издательство 'Любая статья за ваши деньги'"));
-        fantastic_city.addThing(new Thing("Издательство 'Вы заплатите, мы напишем!'"));
+        for (int i = 0; i < 3; i++){
+            System.out.println();
+            System.out.print(i+1 + " ");
+            LilGuys bezrabotnye = new LilGuys("Безработные");
+            bezrabotnye.setType(LilGuyType.BEZRABOTNYE);
+            bezrabotnye.setSkills(bezrabotnye_skills);
+            try{
+                Thread.sleep(500);
+            }catch (InterruptedException thr){}
+
+        }
+
+        System.out.println("############################################################################################");
+        System.out.println();
+
+        Place fantastic_city = new Place(" Брехенвиль");
+        miga.run();
+        gulio.run();
+        try {
+            fantastic_city.addThing(new Thing("Фабрика"));
+            fantastic_city.addThing(new Thing("Издательство 'продажная газетка'"));
+            fantastic_city.addThing(new Thing("Издательство 'Любая статья за ваши деньги'"));
+            fantastic_city.addThing(new Thing("Издательство 'Вы заплатите, мы напишем!'"));
+        }catch (ThingDoesNotExistException ex){
+            ex.getMessage();
+        }
+
+        Place gazeta = new Place(" Газета");
+        try{
+            gazeta.addThing(new Thing("Снимки с несгораемыми сундуками"));
+            gazeta.addThing(new Thing("Снимки с несгораемой кассой"));
+            gazeta.addThing(new Thing("Снимки веревки"));
+        }catch (ThingDoesNotExistException ex){
+            System.out.println(ex.getMessage());
+        }
         System.out.println();
 
         System.out.println("############################################################################################");
         System.out.println();
-        System.out.println("Мига и ЖУЛИО сбежали");
         System.out.println("Мистер Спрутс проявил скилл: "+ mr_spruts_skill.get(1));
         System.out.println("Мистер Спрутс проявил скилл: "+ mr_spruts_skill.get(0));
         System.out.println("Мистер Скуперфильд проявил скилл: "+ mr_scuperfield_skills.get(5));
@@ -107,7 +149,9 @@ public class Main {
                 if (decision == 0) {
                     System.out.println("Мистер Скуперфильд решил: " + mr_scuperfield_skills.get(3));
                     System.out.println("Тогда работяги решили: " + rabotyaga_skills.get(2));
-                    System.out.println("Мистер Скуперфильд: " + mr_scuperfield_skills.get(1));
+                    System.out.println("Мистер Скуперфильд решил: " + mr_scuperfield_skills.get(6));
+                    System.out.println("Безработные решили: " + bezrabotnye_skills.get(0));
+                    System.out.println("Мистер Скуперфильд решил: " + mr_scuperfield_skills.get(1));
                     salary = 0;
                     break;
                 }

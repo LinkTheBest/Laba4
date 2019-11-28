@@ -1,4 +1,5 @@
 public enum LilGuyType {
     RICH_GUY,
-    RABOTYAGA;
+    RABOTYAGA,
+    BEZRABOTNYE;
 }

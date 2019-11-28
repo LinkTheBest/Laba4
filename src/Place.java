@@ -39,20 +39,22 @@ public class Place {
         return location;
     }
 
-    public boolean addThing(Thing new_thing) throws ThingDoesNotException {
-        if(new_thing ==  null){
-            throw new ThingDoesNotException();
-        }
-        if (things.add(new_thing)) {
+    public boolean addThing(Thing new_thing) throws ThingDoesNotExistException {
+        if (new_thing.equals(null)) {
 
-            System.out.println("В объект \"" + name + "\" успешно добавлено " + new_thing.getName() + " в количестве " + new_thing.getCounter() );
-            return true;
-
-        } else {
-            System.out.println("Что-то пошло не так...");
-            return false;
+            throw new ThingDoesNotExistException("Thing does not exist");
         }
-    }
+            if (things.add(new_thing)) {
+
+                System.out.println("В объект \"" + name + "\" успешно добавлено " + new_thing.getName() + " в количестве " + new_thing.getCounter());
+                return true;
+
+            } else {
+                System.out.println("Что-то пошло не так...");
+                return false;
+            }
+        }
+
 
     public void deleteThing(int id) {
         skills.remove(id);

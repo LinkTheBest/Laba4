@@ -46,15 +46,24 @@ public class LilGuys extends SomethingAlive {
                 break;
             case RABOTYAGA: typeName = "работяга";
                 break;
+            case BEZRABOTNYE: typeName = "безработный черт";
+                break;
         }
         System.out.println(getName() + " причислен к виду " + typeName);
     }
 
-    public void setSalary(float salary){
+    public void setSalary(float salary) throws SalaryNullException{
+        if(salary == 0){
+            throw new SalaryNullException("Зарплата должна быть больше нуля!", salary);
+        }
         this.salary = salary;
         System.out.print("Задана зарплата: ");
         System.out.printf("%.1f", salary);
         System.out.println();
+    }
+
+    public void run(){
+        System.out.print(getName() + " решил нагло сбежать!\n");
     }
 
     public boolean equals(LilGuys obj) {
