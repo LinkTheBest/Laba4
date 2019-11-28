@@ -27,11 +27,19 @@ public class Main {
 
 
         LilGuys mr_spruts = new LilGuys("Спрутс");
+        LilGuys.Age age = new LilGuys.Age();
+        age.setAge();
         mr_spruts.setType(LilGuyType.RICH_GUY);
         LilGuys mr_scuperfield = new LilGuys("Скуперфильд");
+        LilGuys.Age age_one = new LilGuys.Age();
+        age_one.setAge();
         mr_scuperfield.setType(LilGuyType.RICH_GUY);
         LilGuys miga = new LilGuys("Мига");
+        LilGuys.Age age_second = new LilGuys.Age();
+        age_second.setAge();
         LilGuys gulio = new LilGuys("ЖУЛИО");
+        LilGuys.Age age_third = new LilGuys.Age();
+        age_third.setAge();
 
         mr_spruts_skill.add(new Skills("Подкупать владельцев газет", null));
         mr_spruts_skill.add(new Skills("Иметь много деняк", null));
@@ -73,13 +81,14 @@ public class Main {
             System.out.println();
             System.out.print(i+1 + " ");
             LilGuys rabotyaga = new LilGuys("Работяга");
+            LilGuys.Age age_rab = new LilGuys.Age();
+            age_rab.setAge();
             rabotyaga.setType(LilGuyType.RABOTYAGA);
             rabotyaga.setSkills(rabotyaga_skills);
             try {
                 rabotyaga.setSalary(salary);
             }catch (SalaryNullException ex){
                 System.out.println(ex.getMessage());
-                System.out.println(ex.getSalary());
                 break;
             }
             try{
@@ -91,9 +100,10 @@ public class Main {
         System.out.println();
 
         for (int i = 0; i < 3; i++){
-            System.out.println();
             System.out.print(i+1 + " ");
-            LilGuys bezrabotnye = new LilGuys("Безработные");
+            LilGuys bezrabotnye = new LilGuys("Безработный");
+            LilGuys.Age age_bezrab = new LilGuys.Age();
+            age_bezrab.setAge();
             bezrabotnye.setType(LilGuyType.BEZRABOTNYE);
             bezrabotnye.setSkills(bezrabotnye_skills);
             try{
@@ -144,9 +154,9 @@ public class Main {
                 System.out.print("Работяги будут ");
                 System.out.println(rabotyaga_skills.get(3));
 
-                decision = rnd.nextInt(3);
+                decision = rnd.nextInt(6);
 
-                if (decision == 0) {
+                if (decision <= 3) {
                     System.out.println("Мистер Скуперфильд решил: " + mr_scuperfield_skills.get(3));
                     System.out.println("Тогда работяги решили: " + rabotyaga_skills.get(2));
                     System.out.println("Мистер Скуперфильд решил: " + mr_scuperfield_skills.get(6));
@@ -156,7 +166,7 @@ public class Main {
                     break;
                 }
 
-                if(decision != 0){
+                if(decision > 3){
                     System.out.println("Мистер Скуперфильд решил: " + mr_scuperfield_skills.get(4));
                     salary =(float)Math.random() * 10;
                     System.out.print("Теперь зарплата: ");

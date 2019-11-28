@@ -1,11 +1,7 @@
 public class SalaryNullException extends RuntimeException {
-    private float sal;
 
-    public float getSalary(){return sal;}
-
-    public SalaryNullException(String message, float salary) {
+    public SalaryNullException(String message) {
         super(message);
-        sal = salary;
     }
 
 }

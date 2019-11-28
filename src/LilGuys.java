@@ -1,3 +1,6 @@
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.ArrayList;
 
 public class LilGuys extends SomethingAlive {
@@ -5,6 +8,7 @@ public class LilGuys extends SomethingAlive {
     private ArrayList<Skills> skills = new ArrayList<>();
     private LilGuyType type;
     private float salary;
+    private static float age;
 
     public LilGuys() {
         System.out.println("Просто человек создан");
@@ -13,6 +17,15 @@ public class LilGuys extends SomethingAlive {
     public LilGuys(String name) {
         super(name);
         System.out.println("Человек " + name + " успешно создан");
+    }
+
+    static class Age{
+        public void setAge(){
+            age = (float) Math.random() * 80;
+            System.out.print("Возрат человека: ");
+            System.out.printf("%.1f", age);
+            System.out.println();
+        }
     }
 
     public ArrayList<Skills> getSkills() {
@@ -52,15 +65,20 @@ public class LilGuys extends SomethingAlive {
         System.out.println(getName() + " причислен к виду " + typeName);
     }
 
-    public void setSalary(float salary) throws SalaryNullException{
-        if(salary == 0){
-            throw new SalaryNullException("Зарплата должна быть больше нуля!", salary);
-        }
-        this.salary = salary;
-        System.out.print("Задана зарплата: ");
-        System.out.printf("%.1f", salary);
-        System.out.println();
+
+        public void setSalary(float sal) throws SalaryNullException{
+            if(sal == 0){
+                throw new SalaryNullException("Зарплата должна быть больше нуля!");
+            }
+             class SalaryInfo {
+                public void PrintInfo() {
+                    System.out.print("Задана зарплата: ");
+                    System.out.printf("%.1f", sal);
+                    System.out.println();
+                }
+            }
     }
+
 
     public void run(){
         System.out.print(getName() + " решил нагло сбежать!\n");
